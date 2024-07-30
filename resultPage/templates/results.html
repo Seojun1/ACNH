@@ -1,0 +1,164 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결과 페이지</title>
+    <style>
+        @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+
+        .nanum-pen-script-regular {
+            font-family: "Nanum Pen Script", cursive;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        .result-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .result-character {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .result-description {
+            font-size: 18px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        #backBtn {
+            margin-top: 60px;
+            width: calc(30% - 15px);
+            padding: 20px;
+            border-radius: 20px;
+            border: none;
+            margin-bottom: 10px;
+            font-weight: 500;
+            font-size: 25px;
+            background-color: #5EA152;
+            color: white;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        /* 미디어 쿼리로 화면 크기에 따른 텍스트 크기 조절 */
+        @media (max-width: 1200px) {
+            .result-character {
+                font-size: 20px;
+            }
+
+            .result-description {
+                font-size: 16px;
+            }
+
+            #backBtn {
+                font-size: 20px;
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .result-character {
+                font-size: 18px;
+            }
+
+            .result-description {
+                font-size: 14px;
+            }
+
+            #backBtn {
+                font-size: 18px;
+                padding: 15px;
+                width: calc(40% - 15px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .result-character {
+                font-size: 16px;
+            }
+
+            .result-description {
+                font-size: 12px;
+            }
+
+            #backBtn {
+                font-size: 16px;
+                padding: 10px;
+                width: calc(50% - 15px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="title">
+            <h2 class="nanum-pen-script-regular">이쭈니연구소</h2>
+            <h1 style="margin-top: 50px;">동물의 숲 테스트</h1>
+        </div>
+        <div class="result-container">
+            <div id="result-character" class="result-character"></div>
+            <div id="result-description" class="result-description"></div>
+            <img id="result-image" src="" alt="Character Image">
+        </div>
+        <div class="main">
+            <div class="main_tag">
+                <a href="/"><button id="backBtn">홈으로</button></a>
+                <!-- <hr style="width: 90%; border: 0.5px solid black;"> -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = () => {
+            // URL에서 쿼리 파라미터 가져오기
+            const urlParams = new URLSearchParams(window.location.search);
+            const resultCharacter = urlParams.get('resultCharacter');
+
+            // 캐릭터 데이터
+            const characters = {
+                '사이다': { type: 'foodie', description: '친절함', image: '{% static "images/cidar.jpg" %}' },
+                '쭈니': { type: 'introvert', description: '느끼함', image: '{% static "images/junni.png" %}' },
+                '미첼': { type: 'selflove', description: '먹보', image: '{% static "images/michell.png" %}' },
+                '요비': { type: 'idol', description: '아이돌', image: '{% static "images/yobi.png" %}' },
+                '시베리아': { type: 'diligent', description: '무뚝뚝', image: '{% static "images/sivearia.png" %}' },
+                '미애': { type: 'active', description: '성숙함', image: '{% static "images/miyae.png" %}' },
+                '시온': { type: 'social', description: '단순활발', image: '{% static "images/sion.png" %}' },
+                '제천': { type: 'active', description: '운동광', image: '{% static "images/jaechon.png" %}' }
+            };
+
+            // 캐릭터에 맞는 데이터 설정하기
+            const characterData = characters[resultCharacter] || { description: '설명 없음', image: '{% static "images/default.jpg" %}' };
+
+            // 결과 화면에 출력하기
+            document.getElementById('result-character').textContent = resultCharacter || '캐릭터 없음';
+            document.getElementById('result-description').textContent = characterData.description;
+            document.getElementById('result-image').src = characterData.image;
+        }
+    </script>
+</body>
+
+</html>

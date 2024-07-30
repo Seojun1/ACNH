@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+    <title>성향 테스트</title>
+
+    <style>
+        @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+
+        .nanum-pen-script-regular {
+            font-family: "Nanum Pen Script", cursive;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .question {
+            display: none;
+        }
+
+        .question.active {
+            display: block;
+        }
+
+        .completion-message {
+            display: none;
+        }
+
+        .completion-message.active {
+            display: block;
+        }
+
+        .question_list {
+            margin-top: 70px;
+        }
+
+        .checkBtn_page>button {
+            padding: 20px;
+            width: 60%;
+            height: 100%;
+            border: none;
+            margin-bottom: 20px;
+            font-weight: 500;
+            font-size: 18px;
+            background-color: #5EA152;
+            font-family: 'Noto Sans KR', sans-serif;
+            color: white;
+        }
+
+        .question_container {
+            width: 100%;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        #question_title {
+            margin: 0;
+        }
+
+        progress {
+            width: 100%;
+            height: 30px;
+            -webkit-appearance: none;
+            appearance: none;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        progress::-webkit-progress-bar {
+            background-color: #e0e0e0;
+            border-radius: 5px;
+        }
+
+        progress::-webkit-progress-value {
+            background-color: #4caf50;
+            border-radius: 5px;
+            transition: width 0.5s ease-in-out;
+        }
+
+        progress::-moz-progress-bar {
+            background-color: #4caf50;
+            border-radius: 5px;
+            transition: width 0.5s ease-in-out;
+        }
+
+        /* 미디어 쿼리 추가 */
+        @media (max-width: 1200px) {
+            .checkBtn_page>button {
+                font-size: 0.875rem;
+                /* 화면이 1200px 이하로 줄어들 때 폰트 크기 축소 */
+            }
+
+            #question_title {
+                font-size: 1.125rem;
+                /* 화면이 1200px 이하로 줄어들 때 제목 폰트 크기 축소 */
+            }
+        }
+
+        @media (max-width: 992px) {
+            .checkBtn_page>button {
+                font-size: 0.75rem;
+                /* 화면이 992px 이하로 줄어들 때 폰트 크기 축소 */
+            }
+
+            #question_title {
+                font-size: 1rem;
+                /* 화면이 992px 이하로 줄어들 때 제목 폰트 크기 축소 */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .checkBtn_page>button {
+                font-size: 0.625rem;
+                /* 화면이 768px 이하로 줄어들 때 폰트 크기 축소 */
+            }
+
+            #question_title {
+                font-size: 0.875rem;
+                /* 화면이 768px 이하로 줄어들 때 제목 폰트 크기 축소 */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">
+            <h2 class="nanum-pen-script-regular">이쭈니연구소</h2>
+            <progress value="0" max="100"></progress>
+        </div>
+
+        <!-- 질문 답변 리스트 -->
+        <div class="question_list">
+            <!-- 질문 1 -->
+            <div class="question_1 question active">
+                <div class="question_container">
+                    <h4 id="question_title">친구가 너한테 주말에 영화를 보러 가자고 제안했어. 너는 어떻게 반응할 거야?</h4><br><br>
+                </div>
+                <div class="checkBtn_page">
+                    <button onclick="showNextQuestion(2, ['idol', 'social'], ['친절함', '활기참'])">오, 좋지! 뭐 볼까?</button>
+                    <button onclick="showNextQuestion(2, ['foodie', 'diligent'], ['친절함', '무뚝뚝'])">음, 난 다른 계획이
+                        있어.</button><br>
+                </div>
+            </div>
+
+            <!-- 질문 2 -->
+            <div class="question_2 question">
+                <div class="question_container">
+                    <h4 id="question_title">영화 장르를 선택해야 해. 판타지 영화를 보고 싶은데, 너는 어떻게 생각해?</h4><br><br>
+                </div>
+                <div class="checkBtn_page">
+                    <button onclick="showNextQuestion(3, ['idol', 'active'], ['활기참', '친절함'])">와, 판타지 영화 정말 좋지!</button>
+                    <button onclick="showNextQuestion(3, ['diligent', 'selflove'], ['무뚝뚝', '친절함'])">그건 별로 관심
+                        없어.</button><br>
+                </div>
+            </div>
+
+            <!-- 질문 3 -->
+            <div class="question_3 question">
+                <div class="question_container">
+                    <h4 id="question_title">너의 친구가 점심으로 간단한 식사를 제안했어. 너는 어떻게 반응할 거야?</h4><br><br>
+                </div>
+                <div class="checkBtn_page">
+                    <button onclick="showNextQuestion(4, ['foodie', 'active'], ['친절함', '활기참'])">좋아! 간단한 식사로
+                        충분해!</button>
+                    <button onclick="showNextQuestion(4, ['idol', 'selflove'], ['활기참', '친절함'])">식사는 좀 더 정식으로 해야 하지
+                        않나?</button><br>
+                </div>
+            </div>
+
+            <!-- 질문 4 -->
+            <div class="question_4 question">
+                <div class="question_container">
+                    <h4 id="question_title">너와 친구가 쇼핑을 가기로 했어. 무엇을 사러 갈까?</h4><br><br>
+                </div>
+                <div class="checkBtn_page">
+                    <button onclick="showNextQuestion(5, ['foodie', 'selflove'], ['친절함', '무뚝뚝'])">편안한 옷을 사러 가자!</button>
+                    <button onclick="showNextQuestion(5, ['idol', 'social'], ['활기참', '친절함'])">화려한 액세서리를 사러
+                        가자!</button><br>
+                </div>
+            </div>
+
+            <!-- 질문 5 -->
+            <div class="question_5 question">
+                <div class="question_container">
+                    <h4 id="question_title">친구가 새로운 운동을 함께 해보자고 했어. 너는 어떻게 할 거야?</h4>
+                </div>
+                <div class="checkBtn_page">
+                    <button onclick="showNextQuestion(6, ['active', 'social'], ['활기참', '활기참'])">좋아! 운동해보는 거
+                        좋아해!</button>
+                    <button onclick="showNextQuestion(6, ['foodie', 'diligent'], ['친절함', '무뚝뚝'])">아, 나는 다른 취미가 더
+                        좋아.</button><br>
+                </div>
+            </div>
+
+            <!-- 질문 6 -->
+            <div class="question_6 question">
+                <div class="question_container">
+                    <h4 id="question_title">집에서 혼자 시간을 보낼 때, 보통 뭐 해?</h4>
+                </div>
+                <div class="checkBtn_page">
+                    <button onclick="showNextQuestion(7, ['foodie', 'selflove'], ['친절함', '친절함'])">요리하거나 간단한 간식을
+                        만들지!</button>
+                    <button onclick="showNextQuestion(7, ['active', 'idol'], ['활기참', '활기참'])">운동하거나 활동적인 일을
+                        해!</button><br>
+                </div>
+            </div>
+
+            <!-- 질문 7 -->
+            <div class="question_7 question">
+                <div class="question_container">
+                    <h4 id="question_title">친구들이 모여서 저녁을 준비할 때, 너는 어떤 역할을 맡을 거야?</h4>
+                </div>
+                <div class="checkBtn_page">
+                    <button onclick="showNextQuestion(8, ['foodie', 'active'], ['친절함', '활기참'])">음식을 만드는 걸 도와줄게!</button>
+                    <button onclick="showNextQuestion(8, ['social', 'idol'], ['활기참', '활기참'])">게임이나 활동을
+                        기획할게!</button><br>
+                </div>
+            </div>
+
+            <!-- 질문 8 -->
+            <div class="question_8 question">
+                <div class="question_container">
+                    <h4 id="question_title">스트레스를 받을 때, 너는 주로 어떤 방법으로 스트레스를 푸는 편이야?</h4>
+                </div>
+                <div class="checkBtn_page">
+                    <button onclick="showNextQuestion(9, ['foodie', 'selflove'], ['친절함', '친절함'])">맛있는 음식을 먹어!</button>
+                    <button onclick="showNextQuestion(9, ['active', 'diligent'], ['활기참', '무뚝뚝'])">운동하거나
+                        산책해!</button><br>
+                </div>
+            </div>
+
+            <!-- 질문 9 -->
+            <div class="question_9 question">
+                <div class="question_container">
+                    <h4 id="question_title">자유시간이 있을 때, 보통 어떤 활동을 하는 편이야?</h4>
+                </div>
+                <div class="checkBtn_page">
+                    <button onclick="showNextQuestion(10, ['diligent', 'selflove'], ['무뚝뚝', '친절함'])">조용한 독서를
+                        즐기지!</button>
+                    <button onclick="showNextQuestion(10, ['social', 'active'], ['활기참', '활기참'])">친구들과 외출해!</button><br>
+                </div>
+            </div>
+
+            <!-- 질문 10 -->
+            <div class="question_10 question">
+                <div class="question_container">
+                    <h4 id="question_title">집을 꾸미는 걸 고민 중이야. 어떤 스타일을 선택할래?</h4>
+                </div>
+                <div class="checkBtn_page">
+                    <button onclick="showResult()">아늑하고 편안한 분위기로!</button>
+                    <button onclick="showResult()">세련되고 현대적인 스타일로!</button><br>
+                </div>
+            </div>
+        </div>
+
+        <!-- 종료 멘트 -->
+        <div id="result"></div>
+    </div>
+
+    <script>
+        let currentQuestion = 1;
+        const totalQuestions = 10;  // 총 질문 수
+        let scores = {
+            foodie: 0,
+            diligent: 0,
+            idol: 0,
+            active: 0,
+            selflove: 0,
+            social: 0
+        };
+
+        let categories = {
+            '친절함': 0,
+            '무뚝뚝': 0,
+            '활기참': 0
+        };
+
+        const characters = {
+            '사이다': { type: 'foodie', description: '친절함', category: '친절함' },
+            '쭈니': { type: 'introvert', description: '느끼함', category: '무뚝뚝' },
+            '미첼': { type: 'selflove', description: '먹보', category: '친절함' },
+            '시베리아': { type: 'diligent', description: '무뚝뚝', category: '무뚝뚝' },
+            '시온': { type: 'social', description: '단순활발', category: '활기참' },
+            '미애': { type: 'active', description: '성숙함', category: '친절함' },
+            '제천': { type: 'active', description: '운동광', category: '활기참' },
+            '요비': { type: 'idol', description: '아이돌', category: '활기참' }
+        };
+
+        function getRandomCharacter(category) {
+            // 카테고리에 해당하는 캐릭터 필터링
+            const filteredCharacters = Object.entries(characters).filter(([name, info]) => info.category === category);
+
+            // 무작위로 캐릭터 선택
+            const randomIndex = Math.floor(Math.random() * filteredCharacters.length);
+            const [characterName, characterInfo] = filteredCharacters[randomIndex];
+
+            return {
+                name: characterName,
+                description: characterInfo.description
+            };
+        }
+
+        function showResult() {
+            // 카테고리 중 가장 많이 나온 값 찾기
+            let maxCategory = Object.keys(categories).reduce((a, b) => categories[a] > categories[b] ? a : b);
+
+            // 해당 카테고리에서 랜덤 캐릭터 선택
+            const { name: resultCharacter, description } = getRandomCharacter(maxCategory);
+
+            // 결과를 쿼리 파라미터로 넘기기
+            const queryString = new URLSearchParams({
+                resultCharacter: resultCharacter,
+                description: description
+            }).toString();
+
+            window.location.href = `/results?${queryString}`;
+        }
+
+        function showNextQuestion(nextQuestionNumber, answerCategories, answerCategoriesText) {
+            // Hide current question
+            const currentQuestionElement = document.querySelector(`.question_${currentQuestion}`);
+            currentQuestionElement.classList.remove('active');
+
+            // Show next question
+            const nextQuestionElement = document.querySelector(`.question_${nextQuestionNumber}`);
+            nextQuestionElement.classList.add('active');
+
+            // Update scores based on answerCategories
+            answerCategories.forEach(category => {
+                if (scores[category] !== undefined) {
+                    scores[category]++;
+                }
+            });
+
+            // Update categories based on answerCategoriesText
+            answerCategoriesText.forEach(categoryText => {
+                if (categories[categoryText] !== undefined) {
+                    categories[categoryText]++;
+                }
+            });
+
+            // Update progress bar
+            updateProgressBar(nextQuestionNumber);
+
+            // Update current question number
+            currentQuestion = nextQuestionNumber;
+
+            // Check if all questions are completed
+            if (currentQuestion > totalQuestions) {
+                showResult();
+            }
+        }
+
+        function updateProgressBar(questionNumber) {
+            const progressBar = document.querySelector('progress');
+            const progressValue = (questionNumber / totalQuestions) * 100;
+
+            // 진행 바 애니메이션
+            progressBar.style.transition = 'width 0.5s ease-in-out';
+            progressBar.value = progressValue;
+        }
+
+        function shuffleButtons(questionSelector) {
+            const questionElement = document.querySelector(questionSelector);
+            const buttons = Array.from(questionElement.querySelectorAll('button'));
+
+            // Fisher-Yates shuffle
+            for (let i = buttons.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                const temp = buttons[i];
+                buttons[i] = buttons[j];
+                buttons[j] = temp;
+            }
+
+            // 기존 버튼 제거
+            /* questionElement.querySelector('.checkBtn_page').innerHTML = ''; */
+
+            // 섞인 버튼 추가
+            buttons.forEach(button => {
+                questionElement.querySelector('.checkBtn_page').appendChild(button);
+            });
+        }
+
+        window.onload = () => {
+            shuffleButtons('.question_1');
+            shuffleButtons('.question_2');
+            shuffleButtons('.question_3');
+            shuffleButtons('.question_4');
+            shuffleButtons('.question_5');
+            shuffleButtons('.question_6');
+            shuffleButtons('.question_7');
+            shuffleButtons('.question_8');
+            shuffleButtons('.question_9');
+            shuffleButtons('.question_10');
+        };
+    </script>
+</body>
+
+</html>
