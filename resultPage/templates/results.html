@@ -20,56 +20,121 @@
             font-family: "Nanum Pen Script", cursive;
             font-weight: 400;
             font-style: normal;
+            font-size: 45px;
         }
 
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 50px;
+            margin: 0;
+            color: white;
+            background-image: url('{% static "images/background.png" %}');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            padding: 20px;
         }
 
         .result-container {
-            max-width: 600px;
+            max-width: 800px;
             margin: auto;
             padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            color: white;
         }
 
         .result-character {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
             margin-bottom: 10px;
         }
 
         .result-description {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .result-personality {
             font-size: 18px;
+            margin-bottom: 20px;
+            text-align: left;
+            max-width: 100%;
+            margin: auto;
+        }
+
+        .result-personality ul {
+            padding-left: 20px;
+            list-style-type: disc;
+        }
+
+        .result-personality li {
+            margin-bottom: 10px;
         }
 
         img {
-            max-width: 100%;
+            width: 100%;
+            max-width: 600px;
             height: auto;
             border-radius: 10px;
             margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
         }
 
         #backBtn {
-            margin-top: 60px;
-            width: calc(30% - 15px);
-            padding: 20px;
+            margin-top: 40px;
+            width: 250px;
+            padding: 15px;
             border-radius: 20px;
             border: none;
-            margin-bottom: 10px;
             font-weight: 500;
-            font-size: 25px;
+            font-size: 20px;
             background-color: #5EA152;
             color: white;
             font-family: 'Noto Sans KR', sans-serif;
         }
 
+        .share {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .share h2 {
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        .share_col img {
+            width: 44px;
+            height: 44px;
+            margin: 0 10px;
+        }
+
         /* 미디어 쿼리로 화면 크기에 따른 텍스트 크기 조절 */
         @media (max-width: 1200px) {
+            .result-character {
+                font-size: 24px;
+            }
+
+            .result-description {
+                font-size: 18px;
+            }
+
+            .result-personality {
+                font-size: 16px;
+            }
+
+            #backBtn {
+                font-size: 18px;
+                padding: 10px;
+                width: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
             .result-character {
                 font-size: 20px;
             }
@@ -78,13 +143,22 @@
                 font-size: 16px;
             }
 
+            .result-personality {
+                font-size: 14px;
+            }
+
             #backBtn {
+                font-size: 16px;
+                padding: 10px;
+                width: 180px;
+            }
+
+            .share h2 {
                 font-size: 20px;
-                padding: 15px;
             }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 480px) {
             .result-character {
                 font-size: 18px;
             }
@@ -93,26 +167,18 @@
                 font-size: 14px;
             }
 
-            #backBtn {
-                font-size: 18px;
-                padding: 15px;
-                width: calc(40% - 15px);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .result-character {
-                font-size: 16px;
-            }
-
-            .result-description {
+            .result-personality {
                 font-size: 12px;
             }
 
             #backBtn {
-                font-size: 20px;
-                padding: 20px;
-                width: calc(80% - 5px);
+                font-size: 14px;
+                padding: 10px;
+                width: 150px;
+            }
+
+            .share h2 {
+                font-size: 18px;
             }
         }
     </style>
@@ -122,46 +188,111 @@
     <div class="container">
         <div class="title">
             <h2 class="nanum-pen-script-regular">이쭈니연구소</h2>
-            <h1 style="margin-top: 50px;">동물의 숲 테스트</h1>
+            <h1 style="margin-top: 20px;">동물의 숲 테스트</h1><br><br>
         </div>
         <div class="result-container">
-            <div id="result-character" class="result-character"></div>
-            <div id="result-description" class="result-description"></div>
             <img id="result-image" src="" alt="Character Image">
+            <p style="font-weight: bold; font-size: 20px; margin-top: 20px;">이미지를 꾹 눌러 저장하세요!</p>
+            <!-- Uncomment these lines if you want to display text -->
+            <!-- <div id="result-character" class="result-character">{{ character }}</div>
+            <div id="result-description" class="result-description">{{ description }}</div>
+            <div id="result-personality" class="result-personality"></div> -->
         </div>
         <div class="main">
             <div class="main_tag">
-                <a href="/"><button id="backBtn">홈으로</button></a>
-                <!-- <hr style="width: 90%; border: 0.5px solid black;"> -->
+                <a href="/"><button id="backBtn">다시 하기</button></a>
+            </div>
+            <div class="share">
+                <h2>친구에게 공유하기</h2>
+                <div class="col-12 share_col text_center mt-4 mb-4">
+                    <button class="share copy_link btn" channel="url" share="result page" gtm-ab-trigger="click"
+                        gtm-alias="url 공유하기">
+                        <img src="https://d2k6w3n3qf94c4.cloudfront.net/prod.static/common/img/SNS/share.19fc55c65e1d.svg"
+                            alt="공유하기">
+                    </button>
+                    <button class="share facebook_share btn" channel="facebook" share="result page"
+                        gtm-ab-trigger="click" gtm-alias="페이스북 공유하기">
+                        <img src="https://d2k6w3n3qf94c4.cloudfront.net/prod.static/common/img/SNS/facebook.34d74b3dc187.svg"
+                            alt="페이스북 공유하기">
+                    </button>
+                    <button class="share twitter_share btn" channel="twitter" share="result page" gtm-ab-trigger="click"
+                        gtm-alias="트위터 공유하기">
+                        <img src="https://d2k6w3n3qf94c4.cloudfront.net/prod.static/common/img/SNS/twitter.2761f4d7e098.svg"
+                            alt="트위터 공유하기">
+                    </button>
+                    <button class="share kakao_share btn" channel="kakao" share="result page" gtm-ab-trigger="click"
+                        gtm-alias="카카오 공유하기">
+                        <img src="https://d2k6w3n3qf94c4.cloudfront.net/prod.static/common/img/SNS/kakao.7f0f47e99a41.svg"
+                            alt="카카오 공유하기">
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
+        function utf8ToBase64(str) {
+            return btoa(unescape(encodeURIComponent(str)));
+        }
+
+        function base64ToUtf8(str) {
+            return decodeURIComponent(escape(atob(str)));
+        }
+
         window.onload = () => {
             // URL에서 쿼리 파라미터 가져오기
             const urlParams = new URLSearchParams(window.location.search);
-            const resultCharacter = urlParams.get('resultCharacter');
+            const encodedData = urlParams.get('data');
 
-            // 캐릭터 데이터
-            const characters = {
-                '사이다': { type: 'foodie', description: '친절함', image: '{% static "images/cidar.jpg" %}' },
-                '쭈니': { type: 'introvert', description: '느끼함', image: '{% static "images/junni.png" %}' },
-                '미첼': { type: 'selflove', description: '먹보', image: '{% static "images/michell.png" %}' },
-                '요비': { type: 'idol', description: '아이돌', image: '{% static "images/yobi.png" %}' },
-                '시베리아': { type: 'diligent', description: '무뚝뚝', image: '{% static "images/sivearia.png" %}' },
-                '미애': { type: 'active', description: '성숙함', image: '{% static "images/miyae.png" %}' },
-                '시온': { type: 'social', description: '단순활발', image: '{% static "images/sion.png" %}' },
-                '제천': { type: 'active', description: '운동광', image: '{% static "images/jaechon.png" %}' }
-            };
+            if (encodedData) {
+                // Base64 디코딩
+                const decodedData = base64ToUtf8(encodedData);
+                const result = JSON.parse(decodedData);
 
-            // 캐릭터에 맞는 데이터 설정하기
-            const characterData = characters[resultCharacter] || { description: '설명 없음', image: '{% static "images/default.jpg" %}' };
+                // 캐릭터 데이터
+                const characters = {
+                    '사이다': { type: 'foodie', description: '친절함', image: '{% static "images/cidar.png" %}' },
+                    '쭈니': { type: 'introvert', description: '느끼함', image: '{% static "images/junni.png" %}' },
+                    '미첼': { type: 'selflove', description: '먹보', image: '{% static "images/michell.png" %}' },
+                    '요비': { type: 'idol', description: '아이돌', image: '{% static "images/yobi.png" %}' },
+                    '시베리아': { type: 'diligent', description: '무뚝뚝', image: '{% static "images/sivearia.png" %}' },
+                    '미애': { type: 'active', description: '성숙함', image: '{% static "images/miyae.png" %}' },
+                    '시온': { type: 'social', description: '단순활발', image: '{% static "images/sion.png" %}' },
+                    '제천': { type: 'active', description: '운동광', image: '{% static "images/jaechon.png" %}' }
+                };
 
-            // 결과 화면에 출력하기
-            document.getElementById('result-character').textContent = resultCharacter || '캐릭터 없음';
-            document.getElementById('result-description').textContent = characterData.description;
-            document.getElementById('result-image').src = characterData.image;
+                // 캐릭터에 맞는 데이터 설정하기
+                const characterData = characters[result.resultCharacter] || { description: '설명 없음', image: '{% static "images/default.jpg" %}' };
+
+                // 결과 화면에 출력하기
+                // document.getElementById('result-character').textContent = result.resultCharacter || '캐릭터 없음';
+                // document.getElementById('result-description').textContent = characterData.description;
+                document.getElementById('result-image').src = characterData.image;
+            }
+        }
+
+        function showResult() {
+            // 카테고리 중 가장 많이 나온 값 찾기
+            let maxCategory = Object.keys(categories).reduce((a, b) => categories[a] > categories[b] ? a : b);
+
+            // 해당 카테고리에서 랜덤 캐릭터 선택
+            const { name: resultCharacter, description } = getRandomCharacter(maxCategory);
+
+            // 결과를 JSON 문자열로 변환
+            const result = JSON.stringify({
+                resultCharacter: resultCharacter,
+                description: description
+            });
+
+            // UTF-8로 인코딩한 후 Base64 인코딩
+            const encodedResult = utf8ToBase64(result);
+
+            // 인코딩된 결과를 쿼리 파라미터로 넘기기
+            const queryString = new URLSearchParams({
+                data: encodedResult
+            }).toString();
+
+            window.location.href = `/results?${queryString}`;
         }
     </script>
 </body>

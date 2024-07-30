@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
-    <link rel="icon" href="{% static 'images/titleLogo.png' %}"/>
+    <link rel="icon" href="{% static 'images/titleLogo.png' %}" />
 
     <title>동물의 숲 캐릭터 테스트</title>
 
@@ -22,6 +22,7 @@
             font-family: "Nanum Pen Script", cursive;
             font-weight: 400;
             font-style: normal;
+            font-size: 45px;
         }
 
         html,
@@ -32,7 +33,9 @@
         }
 
         body {
+            color: white;
             font-family: Arial, sans-serif;
+            background-image : url('{% static "images/background.png" %}');
         }
 
         .logo {
@@ -70,7 +73,7 @@
             font-family: 'Noto Sans KR', sans-serif;
         }
 
-        #startBtn > a {
+        #startBtn>a {
             color: white;
             text-decoration: none;
         }
