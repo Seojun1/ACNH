@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
@@ -119,6 +119,10 @@
             margin-right: auto;
         }
 
+        #shareBtn {
+            margin: 0;
+        }
+
         /* 미디어 쿼리로 화면 크기에 따른 텍스트 크기 조절 */
         @media (max-width: 1200px) {
             .result-character {
@@ -227,31 +231,31 @@
                 <a href="/"><button id="backBtn">다시 하기</button></a>
             </div>
             <div class="share">
-                <h2>친구에게 공유하기</h2>
-                <div class="col-12 share_col text_center mt-4 mb-4">
-                    <button class="share copy_link btn" channel="url" share="result page" gtm-ab-trigger="click"
-                        gtm-alias="url 공유하기">
+                <h1>친구에게 공유하기</h1>
+                <div class="col-12 share_col text_center mt-4 mb-4" style="margin-top: 0;">
+                    <button id="shareBtn" class="share copy_link btn" channel="url" share="result page"
+                        gtm-ab-trigger="click" gtm-alias="url 공유하기">
                         <img src="https://d2k6w3n3qf94c4.cloudfront.net/prod.static/common/img/SNS/share.19fc55c65e1d.svg"
                             alt="공유하기">
                     </button>
-                    <button class="share facebook_share btn" channel="facebook" share="result page"
+                    <button id="shareBtn" class="share facebook_share btn" channel="facebook" share="result page"
                         gtm-ab-trigger="click" gtm-alias="페이스북 공유하기">
                         <img src="https://d2k6w3n3qf94c4.cloudfront.net/prod.static/common/img/SNS/facebook.34d74b3dc187.svg"
                             alt="페이스북 공유하기">
                     </button>
-                    <button class="share twitter_share btn" channel="twitter" share="result page" gtm-ab-trigger="click"
-                        gtm-alias="트위터 공유하기">
+                    <button id="shareBtn" class="share twitter_share btn" channel="twitter" share="result page"
+                        gtm-ab-trigger="click" gtm-alias="트위터 공유하기">
                         <img src="https://d2k6w3n3qf94c4.cloudfront.net/prod.static/common/img/SNS/twitter.2761f4d7e098.svg"
                             alt="트위터 공유하기">
                     </button>
-                    <button class="share kakao_share btn" channel="kakao" share="result page" gtm-ab-trigger="click"
-                        gtm-alias="카카오 공유하기">
+                    <button id="shareBtn" class="share kakao_share btn" channel="kakao" share="result page"
+                        gtm-ab-trigger="click" gtm-alias="카카오 공유하기">
                         <img src="https://d2k6w3n3qf94c4.cloudfront.net/prod.static/common/img/SNS/kakao.7f0f47e99a41.svg"
                             alt="카카오 공유하기">
                     </button>
                 </div>
             </div>
-        </div>
+        </div><br>
         <div class="admin">
             <ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-dNnzQmuBOApaWPxz" data-ad-width="320"
                 data-ad-height="100"></ins>
@@ -266,6 +270,22 @@
     </div>
 
     <script>
+        document.documentElement.addEventListener('touchstart', function (event) {
+            if (event.touches.length > 1) {
+                event.preventDefault();
+            }
+        }, false);
+
+        var lastTouchEnd = 0;
+
+        document.documentElement.addEventListener('touchend', function (event) {
+            var now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            } lastTouchEnd = now;
+        }, false);
+
+
         function utf8ToBase64(str) {
             return btoa(unescape(encodeURIComponent(str)));
         }

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
@@ -81,9 +81,7 @@
             text-align: center;
         }
 
-        .admin {
-
-        }
+        .admin {}
 
         /* 미디어 쿼리로 화면 크기에 따른 텍스트 크기 조절 */
         @media (max-width: 1200px) {
@@ -159,7 +157,7 @@
         <div class="title">
             <h2 class="nanum-pen-script-regular">이쭈니연구소</h2>
             <h1 style="margin-top: 50px;">동물의 숲 테스트</h1>
-            <h3 style="margin-top: 10px;">나와 닮은 동물의 숲 캐릭터를 만나봐요!</h3><br><br>
+            <h3 style="margin-top: 10px;">나와 닮은 동물의 숲 캐릭터를 만나봐요!</h3><br>
             <div class="logo">
                 <img src="{% static 'images/logo.jpeg' %}" alt="" style="text-align: center; width: 100%;">
             </div>
@@ -179,6 +177,24 @@
     <!-- side Bar-->
     <div class="admin2">
     </div>
+
+    <script>
+        document.documentElement.addEventListener('touchstart', function (event) {
+            if (event.touches.length > 1) {
+                event.preventDefault();
+            }
+        }, false);
+
+        var lastTouchEnd = 0;
+
+        document.documentElement.addEventListener('touchend', function (event) {
+            var now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            } lastTouchEnd = now;
+        }, false);
+
+    </script>
 </body>
 
 </html>
