@@ -12,7 +12,6 @@
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
     <link rel="icon" href="{% static 'images/titleLogo.png' %}" />
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>동물의 숲 캐릭터 테스트</title>
     <style>
         @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
@@ -30,25 +29,28 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: white; /* 배경색을 흰색으로 변경 */
+            background: white;
+            /* 배경색을 흰색으로 변경 */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             z-index: 1000;
-            color: #333; /* 텍스트 색상 */
+            color: #333;
+            /* 텍스트 색상 */
             text-align: center;
         }
 
         #loading-overlay img.spinner {
-            width: 20%;
-            height: 300px;
+            width: 3%;
+            height: 5%;
         }
 
         #loading-overlay img.complete {
             width: 100px;
             height: 100px;
-            display: none; /* 초기에는 숨김 */
+            display: none;
+            /* 초기에는 숨김 */
         }
 
         #loading-overlay p {
@@ -269,14 +271,30 @@
                 top: 110%;
                 width: 100%;
             }
+
+            #loading-overlay img.spinner {
+                width: 30%;
+                height: 30%;
+            }
+
+            #loading-overlay img.complete {
+                width: 100px;
+                height: 100px;
+                display: none;
+                /* 초기에는 숨김 */
+            }
         }
     </style>
 </head>
 
 <body oncontextmenu="return false" onselectstart="return false" onkeydown="return false">
     <div id="loading-overlay">
-        <img class="spinner" src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExd25ubXR6bG44cjNhOGVwdXpqYXBmYmdxeDc2Z2p6ODVmbTFlYXVjdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/feN0YJbVs0fwA/giphy.gif" alt="Loading...">
-        <img class="complete" src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGpia3B2ZDdvNGh5aTRiMDBxdGF1emFnOGJ1bDVreWFweTcybXZzbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tf9jjMcO77YzV4YPwE/giphy.gif" alt="Completed">
+        <img class="spinner"
+            src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExdDZnam4yMWh1cXAybHRsbDg3b3R4ZHVncTlrMThwMTZqcmVxazhwcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2c85mEsTFONgM0sOQ/giphy.gif"
+            alt="Loading...">
+        <img class="complete"
+            src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGpia3B2ZDdvNGh5aTRiMDBxdGF1emFnOGJ1bDVreWFweTcybXZzbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tf9jjMcO77YzV4YPwE/giphy.gif"
+            alt="Completed">
         <p id="loading-message">분석중....</p>
     </div>
     <div class="container">
@@ -313,17 +331,11 @@
             </div>
         </div>
         <br><br>
-
-        <div class="admin">
-            <ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-dNnzQmuBOApaWPxz" data-ad-width="320"
-                data-ad-height="100"></ins>
-            <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
-
-        </div>
         <div class="admin2">
             <a href="https://link.coupang.com/a/bLREvh" target="_blank" referrerpolicy="unsafe-url"><img
                     src="https://ads-partners.coupang.com/banners/796561?subId=&traceId=V0-301-371ae01f4226dec2-I796561&w=320&h=480"
-                    alt=""></a>
+                    alt=""></a><br>
+            <p style="color: currentColor; font-size: 12px;">- 쿠팡 파트너스 활동을 통해 일정액의 수수료를 제공받을 수 있습니다. -</p>
         </div><br>
 
         <!-- 댓글 -->
