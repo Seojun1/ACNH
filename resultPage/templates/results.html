@@ -24,6 +24,39 @@
             font-size: 45px;
         }
 
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white; /* 배경색을 흰색으로 변경 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            color: #333; /* 텍스트 색상 */
+            text-align: center;
+        }
+
+        #loading-overlay img.spinner {
+            width: 20%;
+            height: 300px;
+        }
+
+        #loading-overlay img.complete {
+            width: 100px;
+            height: 100px;
+            display: none; /* 초기에는 숨김 */
+        }
+
+        #loading-overlay p {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+
         body {
             background-color: #CDE1C5;
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -241,6 +274,11 @@
 </head>
 
 <body oncontextmenu="return false" onselectstart="return false" onkeydown="return false">
+    <div id="loading-overlay">
+        <img class="spinner" src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExd25ubXR6bG44cjNhOGVwdXpqYXBmYmdxeDc2Z2p6ODVmbTFlYXVjdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/feN0YJbVs0fwA/giphy.gif" alt="Loading...">
+        <img class="complete" src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGpia3B2ZDdvNGh5aTRiMDBxdGF1emFnOGJ1bDVreWFweTcybXZzbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tf9jjMcO77YzV4YPwE/giphy.gif" alt="Completed">
+        <p id="loading-message">분석중....</p>
+    </div>
     <div class="container">
         <div class="title">
             <h2 class="nanum-pen-script-regular">StandGiven</h2>
@@ -375,6 +413,18 @@
 
                 }
             }
+
+            // 3초 후 로딩 화면 변경
+            setTimeout(() => {
+                document.querySelector('#loading-overlay .spinner').style.display = 'none'; // 스피너 숨기기
+                document.querySelector('#loading-overlay .complete').style.display = 'block'; // 완료 이미지 표시
+                document.getElementById('loading-message').textContent = '분석 완료!'; // 메시지 변경
+                // 1.5초 후에 페이지를 열기
+                setTimeout(() => {
+                    document.getElementById('loading-overlay').style.display = 'none'; // 로딩 화면 숨기기
+                }, 1500);
+            }, 4500);
+
 
             function showResult() {
                 // 카테고리 중 가장 많이 나온 값 찾기
