@@ -32,9 +32,12 @@
         }
 
         body {
-            color: white;
+            background-color: #CDE1C5;
             font-family: Arial, sans-serif;
-            background-image : url('{% static "images/background.png" %}');
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
         }
 
         .logo {
@@ -49,14 +52,23 @@
             justify-content: center;
         }
 
+        .logo>img {
+            border-radius: 30px;
+        }
+
         .container {
             max-width: 500px;
             padding: 20px;
             text-align: center;
+            flex: 1;
         }
 
-        .main_tag {
-            padding: 20px;
+        h1 {
+            margin-top: 150px;
+        }
+
+        h3 {
+            margin-top: 10px;
         }
 
         #startBtn {
@@ -81,12 +93,36 @@
             text-align: center;
         }
 
-        .admin {}
+        .main {
+            margin-top: 50px;
+        }
+
+        .footer {
+            height: 20px;
+            position: relative;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            background-color: #CDE1C5;
+        }
+
+        .footer>p {
+            font-size: 20px;
+        }
 
         /* 미디어 쿼리로 화면 크기에 따른 텍스트 크기 조절 */
         @media (max-width: 1200px) {
             #startBtn {
                 font-size: 20px;
+            }
+
+            .nanum-pen-script-regular {
+                font-family: "Nanum Pen Script", cursive;
+                font-weight: 400;
+                font-style: normal;
+                font-size: 1.8rem;
             }
 
             .main_tag p {
@@ -117,6 +153,7 @@
 
             h1 {
                 font-size: 1.5rem;
+                margin-top: 50px;
             }
 
             h2 {
@@ -133,12 +170,9 @@
                 font-size: 16px;
             }
 
-            .main_tag p {
-                font-size: 16px;
-            }
-
             h1 {
-                font-size: 1.25rem;
+                font-size: 1.5rem;
+                margin-top: 50px;
             }
 
             h2 {
@@ -146,7 +180,12 @@
             }
 
             h3 {
-                font-size: 0.875rem;
+                font-size: 1rem;
+            }
+
+            .footer>p {
+                text-align: center;
+                font-size: 15px;
             }
         }
     </style>
@@ -155,18 +194,15 @@
 <body oncontextmenu="return false" onselectstart="return false" ondragstart="return false" onkeydown="return false">
     <div class="container">
         <div class="title">
-            <h2 class="nanum-pen-script-regular">이쭈니연구소</h2>
-            <h1 style="margin-top: 50px;">동물의 숲 테스트</h1>
-            <h3 style="margin-top: 10px;">나와 닮은 동물의 숲 캐릭터를 만나봐요!</h3><br>
+            <h2 class="nanum-pen-script-regular">StandGiven</h2>
+            <h1>모동숲 캐릭터 테스트</h1>
+            <h3>나와 잘 맞는 캐릭터는?</h3><br>
             <div class="logo">
-                <img src="{% static 'images/logo.jpeg' %}" alt="" style="text-align: center; width: 100%;">
+                <img src="{% static 'images/logo.png' %}" alt="" style="object-fit: cover; width: 100%;">
             </div>
         </div>
         <div class="main">
-            <div class="main_tag">
-                <a href="/question"><button id="startBtn">테스트 시작하기</button></a>
-                <!-- <hr style="width: 90%; border: 0.5px solid black;"> -->
-            </div>
+            <a href="/question"><button id="startBtn">테스트 시작하기</button></a>
         </div>
         <div class="admin">
             <ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-dNnzQmuBOApaWPxz" data-ad-width="320"
@@ -174,8 +210,8 @@
             <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
         </div>
     </div>
-    <!-- side Bar-->
-    <div class="admin2">
+    <div class="footer">
+        <p>Made By StandGiven</p>
     </div>
 
     <script>
@@ -193,7 +229,6 @@
                 event.preventDefault();
             } lastTouchEnd = now;
         }, false);
-
     </script>
 </body>
 

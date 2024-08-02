@@ -12,6 +12,7 @@
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
     <link rel="icon" href="{% static 'images/titleLogo.png' %}" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>동물의 숲 캐릭터 테스트</title>
     <style>
         @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
@@ -24,16 +25,16 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
+            background-color: #CDE1C5;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             margin: 0;
-            color: white;
-            background-image: url('{% static "images/background.png" %}');
-            background-size: cover;
-            background-position: center;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
         }
 
         .container {
+            text-align: center;
             padding: 20px;
         }
 
@@ -41,10 +42,9 @@
             max-width: 800px;
             margin: auto;
             padding: 20px;
-            background: rgba(0, 0, 0, 0.7);
             border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            color: white;
+            background-color: #FFF1EB;
+            padding: 30px;
         }
 
         .result-character {
@@ -75,19 +75,23 @@
             margin-bottom: 10px;
         }
 
-        img {
-            width: 100%;
+        #result-image {
+            width: 20%;
             max-width: 600px;
             height: auto;
             border-radius: 10px;
             margin-top: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .description {
+            margin-top: 50px;
+            text-align: left;
         }
 
         #backBtn {
             margin-top: 40px;
             width: 250px;
-            padding: 15px;
+            padding: 25px;
             border-radius: 20px;
             border: none;
             font-weight: 500;
@@ -97,30 +101,52 @@
             font-family: 'Noto Sans KR', sans-serif;
         }
 
-        .share {
-            margin-top: 60px;
-            text-align: center;
-        }
-
-        .share h2 {
-            margin-bottom: 20px;
-            font-size: 22px;
-        }
-
-        .share_col img {
-            width: 44px;
-            height: 44px;
-            margin: 0 10px;
-        }
-
         .admin {
             width: 50%;
             margin-left: auto;
             margin-right: auto;
         }
 
-        #shareBtn {
+        .sign {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            font-size: 50px;
+            margin: 50px 0px;
+        }
+
+        .sing>p {
             margin: 0;
+            padding: 0px 30px;
+        }
+
+        .result-container>h3 {
+            font-weight: bold;
+        }
+
+        .result-container>.description_card {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        #result-card {
+            width: 100%;
+            border-radius: 20px;
+        }
+
+        .footer {
+            height: 20px;
+            position: relative;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            background-color: #CDE1C5;
+        }
+
+        .footer>p {
+            font-size: 20px;
         }
 
         /* 미디어 쿼리로 화면 크기에 따른 텍스트 크기 조절 */
@@ -169,14 +195,15 @@
                 width: 180px;
             }
 
-            .share h2 {
-                font-size: 20px;
-            }
-
             .admin {
                 width: 100%;
                 margin-left: auto;
                 margin-right: auto;
+            }
+
+            .result-container>.description_card {
+                font-size: 1rem;
+                margin-top: 20px;
             }
         }
 
@@ -199,14 +226,15 @@
                 width: 150px;
             }
 
-            .share h2 {
-                font-size: 18px;
-            }
-
             .admin {
                 width: 100%;
                 margin-left: auto;
                 margin-right: auto;
+            }
+
+            .container2 {
+                top: 110%;
+                width: 100%;
             }
         }
     </style>
@@ -215,12 +243,27 @@
 <body oncontextmenu="return false" onselectstart="return false" onkeydown="return false">
     <div class="container">
         <div class="title">
-            <h2 class="nanum-pen-script-regular">이쭈니연구소</h2>
-            <h1 style="margin-top: 20px;">동물의 숲 테스트</h1><br><br>
-        </div>
+            <h2 class="nanum-pen-script-regular">StandGiven</h2>
+            <h1>나와 닮은 모동숲 캐릭터는?</h1>
+        </div><br>
         <div class="result-container">
+            <h2 style="font-weight: bold;">시온</h2>
             <img id="result-image" src="" alt="Character Image">
-            <p style="font-weight: bold; font-size: 20px; margin-top: 20px;">이미지를 꾹 눌러 저장하세요!</p>
+            <div class="description">
+                <b>"단순 활발"</b><br><br>
+                <p style="margin: 0;">별자리 : 물병자리</p>
+                <p style="margin: 0;">말버릇 : 확실히</p>
+                <p style="margin: 0;">좋아하는 말 : 용서란 짓밟힌 제비꽃이 발꿈치에 남긴 향기다.</p>
+            </div>
+            <div class="sign">
+                <p>♠︎</p>
+                <p>♣︎</p>
+                <p style="color: red;">♥︎</p>
+                <p style="color: red;">♦︎</p>
+            </div>
+            <h3>당신만의 캐릭터 카드를 공유해 보세요!</h3>
+            <img id="result-card" src="" alt="Character Image">
+            <p class="description_card">이미지를 꾹 눌러 저장하세요!</p>
             <!-- Uncomment these lines if you want to display text -->
             <!-- <div id="result-character" class="result-character">{{ character }}</div>
             <div id="result-description" class="result-description">{{ description }}</div>
@@ -228,34 +271,11 @@
         </div>
         <div class="main">
             <div class="main_tag">
-                <a href="/"><button id="backBtn">다시 하기</button></a>
+                <a href="/"><button id="backBtn">테스트 다시 하기</button></a>
             </div>
-            <div class="share">
-                <h1>친구에게 공유하기</h1>
-                <div class="col-12 share_col text_center mt-4 mb-4" style="margin-top: 0;">
-                    <button id="shareBtn" class="share copy_link btn" channel="url" share="result page"
-                        gtm-ab-trigger="click" gtm-alias="url 공유하기">
-                        <img src="https://d2k6w3n3qf94c4.cloudfront.net/prod.static/common/img/SNS/share.19fc55c65e1d.svg"
-                            alt="공유하기">
-                    </button>
-                    <button id="shareBtn" class="share facebook_share btn" channel="facebook" share="result page"
-                        gtm-ab-trigger="click" gtm-alias="페이스북 공유하기">
-                        <img src="https://d2k6w3n3qf94c4.cloudfront.net/prod.static/common/img/SNS/facebook.34d74b3dc187.svg"
-                            alt="페이스북 공유하기">
-                    </button>
-                    <button id="shareBtn" class="share twitter_share btn" channel="twitter" share="result page"
-                        gtm-ab-trigger="click" gtm-alias="트위터 공유하기">
-                        <img src="https://d2k6w3n3qf94c4.cloudfront.net/prod.static/common/img/SNS/twitter.2761f4d7e098.svg"
-                            alt="트위터 공유하기">
-                    </button>
-                    <button id="shareBtn" class="share kakao_share btn" channel="kakao" share="result page"
-                        gtm-ab-trigger="click" gtm-alias="카카오 공유하기">
-                        <img src="https://d2k6w3n3qf94c4.cloudfront.net/prod.static/common/img/SNS/kakao.7f0f47e99a41.svg"
-                            alt="카카오 공유하기">
-                    </button>
-                </div>
-            </div>
-        </div><br>
+        </div>
+        <br><br>
+
         <div class="admin">
             <ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-dNnzQmuBOApaWPxz" data-ad-width="320"
                 data-ad-height="100"></ins>
@@ -266,90 +286,112 @@
             <a href="https://link.coupang.com/a/bLREvh" target="_blank" referrerpolicy="unsafe-url"><img
                     src="https://ads-partners.coupang.com/banners/796561?subId=&traceId=V0-301-371ae01f4226dec2-I796561&w=320&h=480"
                     alt=""></a>
+        </div><br>
+        <div id="disqus_thread"></div>
+        <script>
+            /**
+            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+            /*
+            var disqus_config = function () {
+            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+            */
+            (function () { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://acnh-1.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+                Disqus.</a></noscript>
+        <div class="footer">
+            <p>Made By StandGiven</p>
         </div>
-    </div>
+        <script>
+            document.documentElement.addEventListener('touchstart', function (event) {
+                if (event.touches.length > 1) {
+                    event.preventDefault();
+                }
+            }, false);
 
-    <script>
-        document.documentElement.addEventListener('touchstart', function (event) {
-            if (event.touches.length > 1) {
-                event.preventDefault();
+            var lastTouchEnd = 0;
+
+            document.documentElement.addEventListener('touchend', function (event) {
+                var now = (new Date()).getTime();
+                if (now - lastTouchEnd <= 300) {
+                    event.preventDefault();
+                } lastTouchEnd = now;
+            }, false);
+
+
+            function utf8ToBase64(str) {
+                return btoa(unescape(encodeURIComponent(str)));
             }
-        }, false);
 
-        var lastTouchEnd = 0;
-
-        document.documentElement.addEventListener('touchend', function (event) {
-            var now = (new Date()).getTime();
-            if (now - lastTouchEnd <= 300) {
-                event.preventDefault();
-            } lastTouchEnd = now;
-        }, false);
-
-
-        function utf8ToBase64(str) {
-            return btoa(unescape(encodeURIComponent(str)));
-        }
-
-        function base64ToUtf8(str) {
-            return decodeURIComponent(escape(atob(str)));
-        }
-
-        window.onload = () => {
-            // URL에서 쿼리 파라미터 가져오기
-            const urlParams = new URLSearchParams(window.location.search);
-            const encodedData = urlParams.get('data');
-
-            if (encodedData) {
-                // Base64 디코딩
-                const decodedData = base64ToUtf8(encodedData);
-                const result = JSON.parse(decodedData);
-
-                // 캐릭터 데이터
-                const characters = {
-                    '사이다': { type: 'foodie', description: '친절함', image: '{% static "images/cidar.png" %}' },
-                    '쭈니': { type: 'introvert', description: '느끼함', image: '{% static "images/junni.png" %}' },
-                    '미첼': { type: 'selflove', description: '먹보', image: '{% static "images/michell.png" %}' },
-                    '요비': { type: 'idol', description: '아이돌', image: '{% static "images/yobi.png" %}' },
-                    '시베리아': { type: 'diligent', description: '무뚝뚝', image: '{% static "images/sivearia.png" %}' },
-                    '미애': { type: 'active', description: '성숙함', image: '{% static "images/miyae.png" %}' },
-                    '시온': { type: 'social', description: '단순활발', image: '{% static "images/sion.png" %}' },
-                    '제천': { type: 'active', description: '운동광', image: '{% static "images/jaechon.png" %}' }
-                };
-
-                // 캐릭터에 맞는 데이터 설정하기
-                const characterData = characters[result.resultCharacter] || { description: '설명 없음', image: '{% static "images/default.jpg" %}' };
-
-                // 결과 화면에 출력하기
-                // document.getElementById('result-character').textContent = result.resultCharacter || '캐릭터 없음';
-                // document.getElementById('result-description').textContent = characterData.description;
-                document.getElementById('result-image').src = characterData.image;
+            function base64ToUtf8(str) {
+                return decodeURIComponent(escape(atob(str)));
             }
-        }
 
-        function showResult() {
-            // 카테고리 중 가장 많이 나온 값 찾기
-            let maxCategory = Object.keys(categories).reduce((a, b) => categories[a] > categories[b] ? a : b);
+            window.onload = () => {
+                // URL에서 쿼리 파라미터 가져오기
+                const urlParams = new URLSearchParams(window.location.search);
+                const encodedData = urlParams.get('data');
 
-            // 해당 카테고리에서 랜덤 캐릭터 선택
-            const { name: resultCharacter, description } = getRandomCharacter(maxCategory);
+                if (encodedData) {
+                    // Base64 디코딩
+                    const decodedData = base64ToUtf8(encodedData);
+                    const result = JSON.parse(decodedData);
 
-            // 결과를 JSON 문자열로 변환
-            const result = JSON.stringify({
-                resultCharacter: resultCharacter,
-                description: description
-            });
+                    // 캐릭터 데이터
+                    const characters = {
+                        '사이다': { type: 'foodie', description: '친절함', card_image: '{% static "images/cidar.png" %}', image: '{% static "images/cidar_char.png" %}' },
+                        '쭈니': { type: 'introvert', description: '느끼함', card_image: '{% static "images/junni.png" %}', image: '{% static "images/cidar_char.png" %}' },
+                        '미첼': { type: 'selflove', description: '먹보', card_image: '{% static "images/michell.png" %}', image: '{% static "images/cidar_char.png" %}' },
+                        '요비': { type: 'idol', description: '아이돌', card_image: '{% static "images/yobi.png" %}', image: '{% static "images/cidar_char.png" %}' },
+                        '시베리아': { type: 'diligent', description: '무뚝뚝', card_image: '{% static "images/sivearia.png" %}', image: '{% static "images/cidar_char.png" %}' },
+                        '미애': { type: 'active', description: '성숙함', card_image: '{% static "images/miyae.png" %}', image: '{% static "images/cidar_char.png" %}' },
+                        '시온': { type: 'social', description: '단순활발', constellation: '물병자리', habits: '확실히', like_word: '용서란 짓밟힌 제비꽃이 발꿈치에 남긴 향기다', card_image: '{% static "images/sion.png" %}', image: '{% static "images/cidar_char.png" %}' },
+                        '제천': { type: 'active', description: '운동광', card_image: '{% static "images/jaechon.png" %}', image: '{% static "images/cidar_char.png" %}' }
+                    };
 
-            // UTF-8로 인코딩한 후 Base64 인코딩
-            const encodedResult = utf8ToBase64(result);
+                    // 캐릭터에 맞는 데이터 설정하기
+                    const characterData = characters[result.resultCharacter] || { description: '설명 없음', image: '{% static "images/default.jpg" %}' };
 
-            // 인코딩된 결과를 쿼리 파라미터로 넘기기
-            const queryString = new URLSearchParams({
-                data: encodedResult
-            }).toString();
+                    // 결과 화면에 출력하기
+                    // document.getElementById('result-character').textContent = result.resultCharacter || '캐릭터 없음';
+                    // document.getElementById('result-description').textContent = characterData.description;
+                    document.getElementById('result-image').src = characterData.image;
+                    document.getElementById('result-card').src = characterData.card_image;
+                }
+            }
 
-            window.location.href = `/results?${queryString}`;
-        }
-    </script>
+            function showResult() {
+                // 카테고리 중 가장 많이 나온 값 찾기
+                let maxCategory = Object.keys(categories).reduce((a, b) => categories[a] > categories[b] ? a : b);
+
+                // 해당 카테고리에서 랜덤 캐릭터 선택
+                const { name: resultCharacter, description } = getRandomCharacter(maxCategory);
+
+                // 결과를 JSON 문자열로 변환
+                const result = JSON.stringify({
+                    resultCharacter: resultCharacter,
+                    description: description
+                });
+
+                // UTF-8로 인코딩한 후 Base64 인코딩
+                const encodedResult = utf8ToBase64(result);
+
+                // 인코딩된 결과를 쿼리 파라미터로 넘기기
+                const queryString = new URLSearchParams({
+                    data: encodedResult
+                }).toString();
+
+                window.location.href = `/results?${queryString}`;
+            }
+        </script>
 </body>
 
 </html>

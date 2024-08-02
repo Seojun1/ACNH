@@ -36,15 +36,19 @@
         }
 
         body {
-            color: white;
+            background-color: #CDE1C5;
             font-family: Arial, sans-serif;
-            background-image : url('{% static "images/background.png" %}');
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
         }
 
         .container {
             max-width: 600px;
             padding: 20px;
             text-align: center;
+            flex: 1;
         }
 
         .question {
@@ -102,13 +106,13 @@
             height: 30px;
             -webkit-appearance: none;
             appearance: none;
-            background-color: #e0e0e0;
+            background-color: white;
             border-radius: 5px;
             overflow: hidden;
         }
 
         progress::-webkit-progress-bar {
-            background-color: #e0e0e0;
+            background-color: white;
             border-radius: 5px;
         }
 
@@ -124,8 +128,30 @@
             transition: width 0.5s ease-in-out;
         }
 
+        .footer {
+            height: 20px;
+            position: relative;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            background-color: #CDE1C5;
+        }
+
+        .footer>p {
+            font-size: 20px;
+        }
+
         /* 미디어 쿼리 추가 */
         @media (max-width: 1200px) {
+            .nanum-pen-script-regular {
+                font-family: "Nanum Pen Script", cursive;
+                font-weight: 400;
+                font-style: normal;
+                font-size: 1.8rem;
+            }
+
             .checkBtn_page>button {
                 font-size: 1rem;
             }
@@ -166,6 +192,11 @@
             #question_image {
                 width: 110%;
             }
+
+            .footer>p {
+                text-align: center;
+                font-size: 15px;
+            }
         }
     </style>
 </head>
@@ -173,7 +204,7 @@
 <body oncontextmenu="return false" onselectstart="return false" ondragstart="return false" onkeydown="return false">
     <div class="container">
         <div class="title">
-            <h2 class="nanum-pen-script-regular">이쭈니연구소</h2>
+            <h2 class="nanum-pen-script-regular">StandGiven</h2>
             <progress value="0" max="100"></progress>
         </div>
 
@@ -301,9 +332,9 @@
                 </div>
             </div>
         </div>
-
-        <!-- 종료 멘트 -->
-        <div id="result"></div>
+    </div>
+    <div class="footer">
+        <p>Made By StandGiven</p>
     </div>
 </body>
 
