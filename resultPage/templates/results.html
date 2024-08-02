@@ -247,13 +247,13 @@
             <h1>나와 닮은 모동숲 캐릭터는?</h1>
         </div><br>
         <div class="result-container">
-            <h2 style="font-weight: bold;">시온</h2>
+            <h2 id="charName" style="font-weight: bold;"></h2>
             <img id="result-image" src="" alt="Character Image">
             <div class="description">
-                <b>"단순 활발"</b><br><br>
-                <p style="margin: 0;">별자리 : 물병자리</p>
-                <p style="margin: 0;">말버릇 : 확실히</p>
-                <p style="margin: 0;">좋아하는 말 : 용서란 짓밟힌 제비꽃이 발꿈치에 남긴 향기다.</p>
+                <b id="personality"></b><br><br>
+                <p id="constellation" style="margin: 0;"></p>
+                <p id="habits" style="margin: 0;"></p>
+                <p id="like_word" style="margin: 0;"></p>
             </div>
             <div class="sign">
                 <p>♠︎</p>
@@ -287,6 +287,8 @@
                     src="https://ads-partners.coupang.com/banners/796561?subId=&traceId=V0-301-371ae01f4226dec2-I796561&w=320&h=480"
                     alt=""></a>
         </div><br>
+
+        <!-- 댓글 -->
         <div id="disqus_thread"></div>
         <script>
             /**
@@ -347,24 +349,30 @@
 
                     // 캐릭터 데이터
                     const characters = {
-                        '사이다': { type: 'foodie', description: '친절함', card_image: '{% static "images/cidar.png" %}', image: '{% static "images/cidar_char.png" %}' },
-                        '쭈니': { type: 'introvert', description: '느끼함', card_image: '{% static "images/junni.png" %}', image: '{% static "images/cidar_char.png" %}' },
-                        '미첼': { type: 'selflove', description: '먹보', card_image: '{% static "images/michell.png" %}', image: '{% static "images/cidar_char.png" %}' },
-                        '요비': { type: 'idol', description: '아이돌', card_image: '{% static "images/yobi.png" %}', image: '{% static "images/cidar_char.png" %}' },
-                        '시베리아': { type: 'diligent', description: '무뚝뚝', card_image: '{% static "images/sivearia.png" %}', image: '{% static "images/cidar_char.png" %}' },
-                        '미애': { type: 'active', description: '성숙함', card_image: '{% static "images/miyae.png" %}', image: '{% static "images/cidar_char.png" %}' },
-                        '시온': { type: 'social', description: '단순활발', constellation: '물병자리', habits: '확실히', like_word: '용서란 짓밟힌 제비꽃이 발꿈치에 남긴 향기다', card_image: '{% static "images/sion.png" %}', image: '{% static "images/cidar_char.png" %}' },
-                        '제천': { type: 'active', description: '운동광', card_image: '{% static "images/jaechon.png" %}', image: '{% static "images/cidar_char.png" %}' }
+                        '사이다': { type: 'foodie', description: '"친절함"', constellation: '별 자리 : 양자리', habits: '말 버릇 : 퐁퐁', like_word: '좋아하는 말 : 고양이도 밟으면 꿈틀한다', card_image: '{% static "images/cidar.png" %}', image: '{% static "images/cidar_char.png" %}' },
+                        '쭈니': { type: 'introvert', description: '"느끼함"', constellation: '별 자리 : 천칭자리', habits: '말 버릇 : 어차피', like_word: '좋아하는 말 : 천재일우', card_image: '{% static "images/junni.png" %}', image: '{% static "images/junni_char.png" %}' },
+                        '미첼': { type: 'selflove', description: '"먹보"', constellation: '별 자리 : 황소자리', habits: '말 버릇 : 동글', like_word: '좋아하는 말 : 중요한건 타이밍', card_image: '{% static "images/michell.png" %}', image: '{% static "images/michell_char.png" %}' },
+                        '요비': { type: 'idol', description: '"아이돌"', constellation: '별 자리 : 전갈자리', habits: '말 버릇 : 아무튼', like_word: '좋아하는 말 : 먼 친척보다 가까운 도깨비', card_image: '{% static "images/yobi.png" %}', image: '{% static "images/yobi_char.png" %}' },
+                        '시베리아': { type: 'diligent', description: '"무뚝뚝"', constellation: '별 자리 : 사수자리', habits: '말 버릇 : 콜록콜록', like_word: '좋아하는 말 : 새까만 것보다는 회색이 낫다', card_image: '{% static "images/sivearia.png" %}', image: '{% static "images/sivearia_char.png" %}' },
+                        '미애': { type: 'active', description: '"성숙함"', constellation: '별 자리 : 물고기자리', habits: '말 버릇 : 어머머', like_word: '좋아하는 말 : 꿈속에서는 영원히 춤출 수 있다', card_image: '{% static "images/miyae.png" %}', image: '{% static "images/miyae_char.png" %}' },
+                        '시온': { type: 'social', description: '"단순활발"', constellation: '별 자리 : 물병자리', habits: '말 버릇 : 확실히', like_word: '좋아하는 말 : 용서란 짓밟힌 제비꽃이 발꿈치에 남긴 향기다', card_image: '{% static "images/sion.png" %}', image: '{% static "images/sion_char.png" %}' },
+                        '제천': { type: 'active', description: '"운동광"', constellation: '별 자리 : 사자자리', habits: '말 버릇 : 긁적', like_word: '좋아하는 말 : 부처님 손바닥', card_image: '{% static "images/jaechon.png" %}', image: '{% static "images/jaechon_char.png" %}' }
                     };
 
                     // 캐릭터에 맞는 데이터 설정하기
-                    const characterData = characters[result.resultCharacter] || { description: '설명 없음', image: '{% static "images/default.jpg" %}' };
+                    const characterData = characters[result.resultCharacter] || { description: '설명 없음', constellation: '설명 없음', habits: '설명 없음', like_word: '설명 없음', card_image: '{% static "images/default.png" %}', image: '{% static "images/default.png" %}' };
 
                     // 결과 화면에 출력하기
                     // document.getElementById('result-character').textContent = result.resultCharacter || '캐릭터 없음';
                     // document.getElementById('result-description').textContent = characterData.description;
                     document.getElementById('result-image').src = characterData.image;
                     document.getElementById('result-card').src = characterData.card_image;
+                    document.getElementById('charName').textContent = result.resultCharacter;
+                    document.getElementById('personality').textContent = characterData.description;
+                    document.getElementById('constellation').textContent = characterData.constellation;
+                    document.getElementById('habits').textContent = characterData.habits;
+                    document.getElementById('like_word').textContent = characterData.like_word;
+
                 }
             }
 
