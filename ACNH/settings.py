@@ -40,7 +40,7 @@ SECRET_KEY = get_secret("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['webapp-2221633.pythonanywhere.com', 'acnhtype.shop', 'www.acnhtype.shop']
+ALLOWED_HOSTS = ['pythonanywhere.com', '*']
 
 
 # Application definition
